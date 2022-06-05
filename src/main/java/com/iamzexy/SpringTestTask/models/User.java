@@ -1,11 +1,11 @@
 package com.iamzexy.SpringTestTask.models;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * @author Demin Artem
@@ -14,28 +14,23 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Table(name = "user_table")
 public class User {
 
     @Id
-    @GeneratedValue
-    private String id;
+    @SequenceGenerator(
+            name = "client_sequence",
+            sequenceName = "client_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_sequence")
+    private Long id;
 
     private String login;
 
     private String fio;
 
-    private String birthdate;
+    private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Account> accounts;
-
-    public User() {
-    }
-
-    public User(String login, String fio, String birthdate, List<Account> accounts) {
-        this.login = login;
-        this.fio = fio;
-        this.birthdate = birthdate;
-        this.accounts = accounts;
-    }
 }

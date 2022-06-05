@@ -1,0 +1,30 @@
+GET http://localhost:8080/users
+
+###
+GET http://localhost:8080/users/marmelad
+
+###
+POST http://localhost:8080/users/add
+Content-Type: application/json
+
+{
+   "login" : "grinka",
+   "fio" : "Ivan Grinev",
+   "email" : "grinka@email.com"
+}
+
+###
+GET http://localhost:8080/users/grinka
+
+###
+PUT http://localhost:8080/users/grinka
+Content-Type: application/json
+
+{
+  "login" : "grinka",
+   "fio" : "Petr Grinev",
+   "email" : "grinka@mail.ru"
+}
+
+###
+DELETE http://localhost:8080/users/grinka
